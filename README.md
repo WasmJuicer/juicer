@@ -1,5 +1,7 @@
 # WasmJuicer
 
+[![Conventional Commits](https://img.shields.io/badge/Conventional%20Commits-1.0.0-%23FE5196?logo=conventionalcommits&logoColor=white)](https://conventionalcommits.org)
+
 :warning: To this day, the code is unaudited.
 
 However, it is still an experimental software. Please use at your own risk.
