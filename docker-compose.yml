@@ -1,0 +1,26 @@
+version: "3"
+services:
+  juno:
+    image: ghcr.io/cosmoscontracts/juno:v2.3.1
+    # network_mode: host
+    ports:
+      - 1317:1317 # rest
+      - 26656:26656 # p2p
+      - 26657:26657 # rpc
+    environment:
+      STAKE_TOKEN: ujunox
+      UNSAFE_CORS: 1
+      CHAIN_ID: juno-dev-1
+    command: ./setup_and_run.sh juno1am5sw4geda8xfvmn4pkzruhv8ah0l3jx5hgchh juno1n49nww8e6n0fn38uhhvrdnzauhye2m6p6hurru juno14spgzl9ps5tyev32ny74fa6m0s9q9828v0vrga juno1a2c509c67dvsxktghf3wqnanvwr87wetmsecyn
+
+    # This labels are useless, it's just addresses to use for testing purpose
+    labels:
+      wallet.pubkey: juno1am5sw4geda8xfvmn4pkzruhv8ah0l3jx5hgchh
+      wallet.mnemonic: salmon produce mystery raw embark inside donor purity hockey symbol lizard village away often mango zone spread blush truly eyebrow blame erupt sleep curious
+
+      alice.pubkey: juno1n49nww8e6n0fn38uhhvrdnzauhye2m6p6hurru
+      alice.mnemonic: tackle torch magic mind ripple coin pencil live length now adjust choice rotate fashion goddess major soccer key mansion panel clinic jewel novel skate
+
+      bob.pubkey: juno14spgzl9ps5tyev32ny74fa6m0s9q9828v0vrga
+      bob.mnemonic: pencil early lemon victory road come under panther menu wash sea evil never puppy fee dragon ski advice bridge blood simple invest pig allow
+

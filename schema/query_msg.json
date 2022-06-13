@@ -1,0 +1,31 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "QueryMsg",
+  "oneOf": [
+    {
+      "type": "object",
+      "required": [
+        "is_known_root"
+      ],
+      "properties": {
+        "is_known_root": {
+          "$ref": "#/definitions/IsKnownRootMsg"
+        }
+      },
+      "additionalProperties": false
+    }
+  ],
+  "definitions": {
+    "IsKnownRootMsg": {
+      "type": "object",
+      "required": [
+        "root"
+      ],
+      "properties": {
+        "root": {
+          "type": "string"
+        }
+      }
+    }
+  }
+}
