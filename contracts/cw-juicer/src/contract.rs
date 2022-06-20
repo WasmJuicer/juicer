@@ -2,9 +2,12 @@
 use cosmwasm_std::entry_point;
 
 use cosmwasm_std::{
-    has_coins, to_binary, BankMsg, Binary, Coin, Deps, DepsMut, Env, MessageInfo, Response,
-    StdResult, Uint128 as U128, Uint256 as U256,
+    to_binary, BankMsg, Binary, Coin, Deps, DepsMut, Env, MessageInfo, Response, StdResult,
+    Uint128 as U128, Uint256 as U256,
 };
+
+use cw_utils::must_pay;
+
 use std::str::FromStr;
 
 use cw2::set_contract_version;
@@ -74,27 +77,12 @@ pub fn execute_deposit(
 ) -> Result<Response, ContractError> {
     let coin = BASE_COIN.load(deps.storage)?;
 
-    let sender_coin = match info.funds.iter().find(|c| c.denom == coin.denom) {
-        Some(x) => x,
-        None => {
-            return Err(ContractError::InvalidCoin {
-                denom: coin.denom,
-                amount: coin.amount,
-            })
-        }
-    };
-    if sender_coin.denom != coin.denom {
-        return Err(ContractError::InvalidCoin {
-            denom: coin.denom,
-            amount: coin.amount,
-        });
-    } else if sender_coin.amount != coin.amount {
+    let payment = must_pay(&info, &coin.denom)?;
+    if payment != coin.amount {
         return Err(ContractError::InvalidAmount {
             denom: coin.denom,
             amount: coin.amount,
         });
-    } else if !has_coins(&info.funds, &coin) {
-        return Err(ContractError::NotEnoughFounds {});
     }
 
     let mut commitment_mt = COMMITMENTS.load(deps.storage)?;
