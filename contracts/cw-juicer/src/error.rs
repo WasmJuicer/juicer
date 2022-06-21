@@ -1,4 +1,6 @@
 use cosmwasm_std::{StdError, Uint128};
+use cw_utils::PaymentError;
+
 use thiserror::Error;
 
 #[derive(Error, Debug, PartialEq)]
@@ -24,8 +26,8 @@ pub enum ContractError {
     #[error("Parse error: {msg}")]
     ParseError { msg: String },
 
-    #[error("Invalid coin (this contract authorize only {amount} {denom})")]
-    InvalidCoin { amount: Uint128, denom: String },
+    #[error("{0}")]
+    Payment(#[from] PaymentError),
 
     #[error("Invalid amount (this contract authorize only {amount} {denom})")]
     InvalidAmount { amount: Uint128, denom: String },

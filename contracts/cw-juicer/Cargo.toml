@@ -21,6 +21,7 @@ cosmwasm-std = { version = "1.0.0" }
 cw0 = { version = "0.10.2" }
 cw2 = { version = "0.13.1" }
 cw20 = { version = "0.13.1" }
+cw-utils = { version = "0.13.4" }
 cw-storage-plus = { version = "0.13.1" }
 
 cosmwasm-bignumber = "2.2.0"

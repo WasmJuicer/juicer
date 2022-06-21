@@ -1,7 +1,9 @@
 input.json
-verification_key.json
 withdraw.r1cs
 withdraw.sym
+circuit_final.zkey
+phase1_final.ptau
+phase2_final.ptau
 withdraw_0000.zkey
 withdraw_0001.zkey
 withdraw_constraints.json
